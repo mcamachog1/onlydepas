@@ -55,8 +55,8 @@ user: admin
 password: admin
 
 
-# Configurar Usuarios para autenticación
-## 1. En urls.py del proyecto incluir en urlpatterns
+## Configurar Usuarios para autenticación
+### 1. En urls.py del proyecto incluir en urlpatterns
 `path('accounts/', include('django.contrib.auth.urls')),`
 ```
 from django.contrib import admin
@@ -74,15 +74,15 @@ urlpatterns = [
     - app
         - templates
             - app
-				-index.html
+				- index.html
             - registration
-				-login.html
-				-logout.html
-				-register.html
+				- login.html
+				- logout.html
+				- register.html
 			- base.html
 	- onlydepas
-		-manage.py
-		-etc.
+		- manage.py
+		- etc.
 ## 3. En views.py
 ```
 from django.contrib.auth import authenticate, login
@@ -104,14 +104,8 @@ def login(request):
     else:
         return render(request, 'registration/login')
 ```
-
-## Extras
-### 1.- Instalar django-extensions para ver las urls del proyecto
-`$ pip install django-extensions`
-### 2.- django-extensions en INSTALLED_APPS en settings.py
-### 3.- Correr el comando show_urls
-`$ python manage.py show_urls`
 ### 4.- Código de los templates
+base.html
 ```
 # base.html
 <!DOCTYPE html>
@@ -127,7 +121,7 @@ def login(request):
 </body>
 </html>
 ```
-
+app/index.html
 ```
 # app/index.html
 {% extends "base.html" %}
@@ -136,7 +130,7 @@ def login(request):
 <h1>WELCOME</h1>
 {% endblock %}
 ```
-
+registration/login.html
 ```
 # registration/login.html
 {% extends "base.html" %}
@@ -148,5 +142,13 @@ def login(request):
   </form>
 {% endblock %}
 ```
+
+## Extras
+### 1.- Instalar django-extensions para ver las urls del proyecto
+`$ pip install django-extensions`
+### 2.- django-extensions en INSTALLED_APPS en settings.py
+### 3.- Correr el comando show_urls
+`$ python manage.py show_urls`
+
 ### 5.- Agregar en settings.py
 AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)
