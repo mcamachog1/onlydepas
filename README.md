@@ -53,3 +53,11 @@ DATABASES = {
 `$ python manage.py createsuperuser`
 user: admin
 password: admin
+
+
+## Extras
+### 1.- Instalar django-extensions para ver las urls del proyecto
+`$ pip install django-extensions`
+### 2.- django-extensions en INSTALLED_APPS en settings.py
+### 3.- Correr el comando show_urls
+`$ python manage.py show_urls`
