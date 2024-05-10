@@ -55,9 +55,67 @@ user: admin
 password: admin
 
 
+# Configurar Usuarios para autenticación
+## En urls.py del proyecto incluir en urlpatterns
+`path('accounts/', include('django.contrib.auth.urls')),`
+## Crear la carpeta template y los plantillas .html según la siguiente estructura
+- PROYECTO
+    - app
+        - templates
+            - app
+				-index.html
+            - registration
+				-login.html
+				-logout.html
+				-register.html
+			- base.html
+	- onlydepas
+		-manage.py
+		-etc.
+
+
 ## Extras
 ### 1.- Instalar django-extensions para ver las urls del proyecto
 `$ pip install django-extensions`
 ### 2.- django-extensions en INSTALLED_APPS en settings.py
 ### 3.- Correr el comando show_urls
 `$ python manage.py show_urls`
+### 4.- Código de los templates
+```
+# base.html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}OnlyDepas{% endblock %}</title>
+</head>
+<body>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
+```
+
+```
+# app/index.html
+{% extends "base.html" %}
+
+{% block content %}
+<h1>WELCOME</h1>
+{% endblock %}
+```
+
+```
+# registration/login.html
+{% extends "base.html" %}
+{% block content %}
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Login</button>
+  </form>
+{% endblock %}
+```
+### 5.- Agregar en settings.py
+AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)
