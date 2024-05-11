@@ -58,11 +58,14 @@ user: admin
 password: admin
 
 ## Crear aplicacion Django
+### 1. Crear aplicación app
 `python manage.py startapp app`
+### 2. En settings.py incluirla en INSTALLED_APPS
 
 ## Configurar Usuarios para autenticación
 ### 1. En urls.py del proyecto incluir en urlpatterns
 `path('accounts/', include('django.contrib.auth.urls')),`
+`path('', index, name='index'),`
 ```
 from django.contrib import admin
 from django.urls import path, include
@@ -74,21 +77,7 @@ urlpatterns = [
     path('', index, name='index'),
 ]
 ```
-## 2. Crear la carpeta template y los plantillas .html según la siguiente estructura
-- PROYECTO
-    - app
-        - templates
-            - app
-				- index.html
-            - registration
-				- login.html
-				- logout.html
-				- register.html
-			- base.html
-	- onlydepas
-		- manage.py
-		- etc.
-## 3. En views.py
+## 2. En views.py
 ```
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render
@@ -109,6 +98,21 @@ def login(request):
     else:
         return render(request, 'registration/login')
 ```
+## 3. Crear la carpeta template y los plantillas .html según la siguiente estructura
+- PROYECTO
+    - app
+        - templates
+            - app
+				- index.html
+            - registration
+				- login.html
+				- logout.html
+				- register.html
+			- base.html
+	- onlydepas
+		- manage.py
+		- etc.
+
 ### 4.- Código de los templates
 base.html
 ```
@@ -152,6 +156,18 @@ registration/login.html
 ### 1.- Instalar django-extensions para ver las urls del proyecto
 `$ pip install django-extensions`
 ### 2.- django-extensions en INSTALLED_APPS en settings.py
+```
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'django_extensions',
+    'app',
+]
+```
 ### 3.- Correr el comando show_urls
 `$ python manage.py show_urls`
 
