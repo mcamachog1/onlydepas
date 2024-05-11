@@ -1,6 +1,6 @@
 # Torpedo proyecto Django
 ## Configuración Django
-### 1. Clonar el repositorio en el directorio actual
+### 1. Clonar el repositorio en el directorio actual (colocar un punto al final)
 `$ git clone https://github.com/mcamachog1/onlydepas.git .`
 ### 2. Crear entorno virtual y activar
 `$ python -m venv env`
@@ -16,7 +16,7 @@
 `$ pip install psycopg2`
 ### 7. Instalar python-dotenv
 `$ pip install python-dotenv`
-### 8. Crear proyecto Django
+### 8. Crear proyecto Django (colocar un punto al final)
 `django-admin startproject onlydepas .`
 ### 9. Levantar aplicación y probar
 `$ python manage.py runserver`
