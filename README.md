@@ -7,7 +7,7 @@
 
 `$ source env/Scripts/activate`
 ### 3. Actualizar pip
-`$ python.exe -m pip install --upgrade pip`
+`$ python -m pip install --upgrade pip`
 ### 4. Instalar librerías (este paso sustituye del 5 al 7)
 `$ pip install -r requirements.txt`
 ### 5. Instalar Django 4.2
@@ -16,7 +16,9 @@
 `$ pip install psycopg2`
 ### 7. Instalar python-dotenv
 `$ pip install python-dotenv`
-### 8. Levantar aplicación y probar
+### 8. Crear proyecto Django
+`django-admin startproject onlydepas .`
+### 9. Levantar aplicación y probar
 `$ python manage.py runserver`
 
 
@@ -29,11 +31,12 @@
      DATABASE_HOST=localhost
 ```
 ### 2. En settings.py importar os y load_dotenv y ejecutar load_dotenv para leer el archivo .env
-`import os`
-`from dotenv import load_dotenv`
+```
+import os
+from dotenv import load_dotenv
 
-`load_dotenv()`
-
+load_dotenv()
+```
 ### 3. En settings.py 
 ```
 DATABASES = {
@@ -42,7 +45,7 @@ DATABASES = {
         'NAME': os.environ.get('DATABASE_NAME'),
         'USER': os.environ.get('DATABASE_USER'),
         'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
-        'HOST': 'DATABASE_HOST',
+        'HOST': os.environ.get('DATABASE_HOST'),
         'PORT': '5432',
     }
 }
@@ -54,6 +57,8 @@ DATABASES = {
 user: admin
 password: admin
 
+## Crear aplicacion Django
+`python manage.py startapp app`
 
 ## Configurar Usuarios para autenticación
 ### 1. En urls.py del proyecto incluir en urlpatterns
