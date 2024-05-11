@@ -37,7 +37,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 ```
-### 3. En settings.py 
+### 3. En settings.py configurar la conexión a postgres sin exponer los passwords
 ```
 DATABASES = {
     'default': {
@@ -54,14 +54,24 @@ DATABASES = {
 `$ python manage.py migrate`
 ### 5.- Crear superuser
 `$ python manage.py createsuperuser`
-user: admin
-password: admin
+- user: admin
+- password: admin
 
 ## Crear aplicacion Django
 ### 1. Crear aplicación app
 `python manage.py startapp app`
-### 2. En settings.py incluirla en INSTALLED_APPS
-
+### 2. En settings.py incluir la aplicación en INSTALLED_APPS
+```
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'app',
+]
+```
 ## Configurar Usuarios para autenticación
 ### 1. En urls.py del proyecto incluir en urlpatterns
 `path('accounts/', include('django.contrib.auth.urls')),`
@@ -77,7 +87,7 @@ urlpatterns = [
     path('', index, name='index'),
 ]
 ```
-## 2. En views.py
+## 2. En views.py hacer definir función index y login
 ```
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render
@@ -98,7 +108,7 @@ def login(request):
     else:
         return render(request, 'registration/login')
 ```
-## 3. Crear la carpeta template y los plantillas .html según la siguiente estructura
+## 3. Crear la carpeta _templates_ y los plantillas .html según la siguiente estructura
 - PROYECTO
     - app
         - templates
