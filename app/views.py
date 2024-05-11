@@ -16,3 +16,6 @@ def login(request):
         return HttpResponseRedirect(reverse('app/index'))
     else:
         return render(request, 'registration/login')
+
+def profile(request):
+    return HttpResponse(f"<h1>Hola!</h1> {request.user.username}")

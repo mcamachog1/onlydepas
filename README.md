@@ -116,7 +116,7 @@ def login(request):
 ### 4.- Código de los templates
 base.html
 ```
-# base.html
+<!-- base.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -132,7 +132,7 @@ base.html
 ```
 app/index.html
 ```
-# app/index.html
+<!-- app/index.html -->
 {% extends "base.html" %}
 
 {% block content %}
@@ -141,7 +141,7 @@ app/index.html
 ```
 registration/login.html
 ```
-# registration/login.html
+<!-- registration/login.html -->
 {% extends "base.html" %}
 {% block content %}
   <form method="post">
