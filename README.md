@@ -87,7 +87,7 @@ urlpatterns = [
     path('', index, name='index'),
 ]
 ```
-## 2. En views.py hacer definir función index y login
+## 2. En views.py definir función index y función login
 ```
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render
@@ -108,7 +108,7 @@ def login(request):
     else:
         return render(request, 'registration/login')
 ```
-## 3. Crear la carpeta _templates_ y los plantillas .html según la siguiente estructura
+## 3. Crear la carpeta _templates_ y las plantillas .html según la siguiente estructura
 - PROYECTO
     - app
         - templates
@@ -181,5 +181,5 @@ INSTALLED_APPS = [
 ### 3.- Correr el comando show_urls
 `$ python manage.py show_urls`
 
-### 5.- Agregar en settings.py
+### 4.- Agregar en settings.py
 AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)
