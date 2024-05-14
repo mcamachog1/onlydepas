@@ -76,7 +76,7 @@ INSTALLED_APPS = [
 ]
 ```
 ## Configurar Usuarios para autenticación
-### 1. En urls.py del proyecto incluir en urlpatterns las rutas del index y el login e importar la vista necesarias:
+### 1. En urls.py del proyecto incluir en urlpatterns las rutas del index y el login e importar las vistas necesarias:
 ```
 # urls.py
 from django.contrib import admin
@@ -114,12 +114,12 @@ def login(request):
 ## 3. Crear la carpeta _templates_ dentro de app y las plantillas base.html, index.html y login.html según la siguiente estructura
 - PROYECTO
     - app
-        - templates
+        - _templates_
             - app
-				- index.html
+				- _index.html_
             - registration
-				- login.html
-			- base.html
+				- _login.html_
+			- _base.html_
 	- onlydepas
 		- manage.py
 		- etc.
