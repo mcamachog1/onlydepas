@@ -1,7 +1,7 @@
 # Torpedo proyecto Django
 ## Configuración Django
 ### 0. Crear una carpeta para el proyecto y abrirla con VS Code
-### 1. Clonar la rama 'base' del repositorio de github dentro de la carpeta creada para el proyecto (colocar un punto al final)
+### 1. Clonar la rama 'base' (colocar un punto al final)
 `$ git clone -b base https://github.com/mcamachog1/onlydepas.git .`
 ### 2. Renombrar rama base a main para tu proyecto
 ` $ git branch -m base main`
