@@ -94,9 +94,9 @@ urlpatterns = [
     path('', index, name='index'),
 ]
 ```
-## 2. En views.py definir función index y función login
+## 2. En app/views.py definir función index y función login
 ```
-# views.py
+# app/views.py
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
@@ -116,7 +116,7 @@ def login(request):
     else:
         return render(request, 'registration/login')
 ```
-## 3. Crear la carpeta _templates_ dentro de app y las plantillas .html según la siguiente estructura
+## 3. Crear la carpeta _templates_ dentro de app y las plantillas base.html, index.html, login.html y profile.html según la siguiente estructura
 - PROYECTO
     - app
         - templates
@@ -124,8 +124,6 @@ def login(request):
 				- index.html
             - registration
 				- login.html
-				- logout.html
-				- register.html
 			- base.html
 	- onlydepas
 		- manage.py
@@ -134,7 +132,7 @@ def login(request):
 ### 4.- Código de los templates
 ### base.html
 ```
-<!-- base.html -->
+<!-- templates/base.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -150,16 +148,20 @@ def login(request):
 ```
 ### app/index.html
 ```
-<!-- app/index.html -->
+<!-- templates/app/index.html -->
 {% extends "base.html" %}
 
 {% block content %}
-<h1>WELCOME</h1>
+{% if user.is_authenticated %}
+    <h1>WELCOME {{ user.username }}</h1>
+{% else %}
+    <h1>WELCOME</h1>
+{% endif %}
 {% endblock %}
 ```
 ### registration/login.html
 ```
-<!-- registration/login.html -->
+<!-- templates/registration/login.html -->
 {% extends "base.html" %}
 {% block content %}
   <form method="post">
@@ -169,8 +171,16 @@ def login(request):
   </form>
 {% endblock %}
 ```
-### 5. Levantar aplicación y probar
+### 5.- Setear la variable LOGIN_REDIRECT_URL en settings.py
+```
+# URL a la que se redirige si un usuario hace login exitoso
+LOGIN_REDIRECT_URL = 'index'
+```
+### 6. Levantar aplicación y probar
 `$ python manage.py runserver`
+
+### 7. Colocar la URL localhost:8000/accounts/login
+Ingresar con el usuario admin password: admin y debe redirigirte al index.html
 
 
 ## Extras (estos pasos no son necesarios para que corra el proyecto)
