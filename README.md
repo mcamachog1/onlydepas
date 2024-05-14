@@ -1,24 +1,27 @@
 # Torpedo proyecto Django
 ## Configuración Django
-### 1. Clonar el repositorio en el directorio actual (colocar un punto al final)
-`$ git clone https://github.com/mcamachog1/onlydepas.git .`
-### 2. Crear entorno virtual y activar
+### 0. Crear una carpeta para el proyecto y abrirla con VS Code
+### 1. Clonar la rama 'base' del repositorio de github dentro de la carpeta creada para el proyecto (colocar un punto al final)
+`$ git clone -b base https://github.com/mcamachog1/onlydepas.git .`
+### 2. Renombrar rama base a main para tu proyecto
+` $ git branch -m base main`
+### 3. Crear entorno virtual y activar
 `$ python -m venv env`
 
 `$ source env/Scripts/activate`
-### 3. Actualizar pip
+### 4. Actualizar pip
 `$ python -m pip install --upgrade pip`
-### 4. Instalar librerías (este paso sustituye del 5 al 7)
+### 5. Instalar librerías (este paso sustituye del 6 al 8)
 `$ pip install -r requirements.txt`
-### 5. Instalar Django 4.2
+### 6. Instalar Django 4.2
 `$ pip install django==4.2`
-### 6. Instalar librería psycopg2 para poder conectar a BD Postgres
+### 7. Instalar librería psycopg2 para poder conectar a BD Postgres
 `$ pip install psycopg2`
-### 7. Instalar python-dotenv
+### 8. Instalar python-dotenv
 `$ pip install python-dotenv`
-### 8. Crear proyecto Django (colocar un punto al final)
-`django-admin startproject onlydepas .`
-### 9. Levantar aplicación y probar
+### 9. Crear proyecto Django (colocar un punto al final)
+`$ django-admin startproject onlydepas .`
+### 10. Levantar aplicación y probar
 `$ python manage.py runserver`
 
 
@@ -73,10 +76,14 @@ INSTALLED_APPS = [
 ]
 ```
 ## Configurar Usuarios para autenticación
-### 1. En urls.py del proyecto incluir en urlpatterns
+### 1. En urls.py del proyecto incluir en urlpatterns las rutas:
 `path('accounts/', include('django.contrib.auth.urls')),`
 `path('', index, name='index'),`
+### e importar las vistas de la aplicación
+`from app.views import index`
+
 ```
+# urls.py
 from django.contrib import admin
 from django.urls import path, include
 from app.views import index
@@ -89,6 +96,7 @@ urlpatterns = [
 ```
 ## 2. En views.py definir función index y función login
 ```
+# views.py
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
@@ -108,7 +116,7 @@ def login(request):
     else:
         return render(request, 'registration/login')
 ```
-## 3. Crear la carpeta _templates_ y las plantillas .html según la siguiente estructura
+## 3. Crear la carpeta _templates_ dentro de app y las plantillas .html según la siguiente estructura
 - PROYECTO
     - app
         - templates
@@ -124,7 +132,7 @@ def login(request):
 		- etc.
 
 ### 4.- Código de los templates
-base.html
+### base.html
 ```
 <!-- base.html -->
 <!DOCTYPE html>
@@ -140,7 +148,7 @@ base.html
 </body>
 </html>
 ```
-app/index.html
+### app/index.html
 ```
 <!-- app/index.html -->
 {% extends "base.html" %}
@@ -149,7 +157,7 @@ app/index.html
 <h1>WELCOME</h1>
 {% endblock %}
 ```
-registration/login.html
+### registration/login.html
 ```
 <!-- registration/login.html -->
 {% extends "base.html" %}
@@ -161,8 +169,11 @@ registration/login.html
   </form>
 {% endblock %}
 ```
+### 5. Levantar aplicación y probar
+`$ python manage.py runserver`
 
-## Extras
+
+## Extras (estos pasos no son necesarios para que corra el proyecto)
 ### 1.- Instalar django-extensions para ver las urls del proyecto
 `$ pip install django-extensions`
 ### 2.- django-extensions en INSTALLED_APPS en settings.py
@@ -181,5 +192,13 @@ INSTALLED_APPS = [
 ### 3.- Correr el comando show_urls
 `$ python manage.py show_urls`
 
-### 4.- Agregar en settings.py
+### 4.- Puede ser necesario agregar en settings.py
 AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)
+```
+# URL a la que se redirige si un usuario hace login exitoso
+LOGIN_REDIRECT_URL = 'index'
+# URL a la que se redirige si un usuario no está autenticado y trata de acceder a una vista protegida
+LOGIN_URL = 'login'  
+# URL a la que se redirige si un usuario hace logout exitoso
+LOGOUT_URL = 'logout' 
+```
