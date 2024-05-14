@@ -111,14 +111,14 @@ def login(request):
     else:
         return render(request, 'registration/login')
 ```
-## 3. Crear la carpeta _templates_ dentro de app y las plantillas base.html, index.html y login.html según la siguiente estructura
+## 3. Crear la carpeta _templates_ dentro de app y las plantillas _base.html_, _index.html_ y _login.html_ según la siguiente estructura
 - PROYECTO
     - app
-        - _templates_
+        - **_templates_**
             - app
-				- _index.html_
+				- **_index.html_**
             - registration
-				- _login.html_
+				- **_login.html_**
 			- _base.html_
 	- onlydepas
 		- manage.py
