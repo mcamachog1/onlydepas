@@ -76,12 +76,7 @@ INSTALLED_APPS = [
 ]
 ```
 ## Configurar Usuarios para autenticación
-### 1. En urls.py del proyecto incluir en urlpatterns las rutas:
-`path('accounts/', include('django.contrib.auth.urls')),`
-`path('', index, name='index'),`
-### e importar las vistas de la aplicación
-`from app.views import index`
-
+### 1. En urls.py del proyecto incluir en urlpatterns las rutas del index y el login e importar la vista necesarias:
 ```
 # urls.py
 from django.contrib import admin
@@ -203,12 +198,15 @@ INSTALLED_APPS = [
 `$ python manage.py show_urls`
 
 ### 4.- Puede ser necesario agregar en settings.py
-AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)
 ```
+AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)
+
 # URL a la que se redirige si un usuario hace login exitoso
 LOGIN_REDIRECT_URL = 'index'
+
 # URL a la que se redirige si un usuario no está autenticado y trata de acceder a una vista protegida
-LOGIN_URL = 'login'  
+LOGIN_URL = 'login'
+
 # URL a la que se redirige si un usuario hace logout exitoso
 LOGOUT_URL = 'logout' 
 ```
