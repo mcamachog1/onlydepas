@@ -99,7 +99,7 @@ from django.urls import reverse
 
 # Create your views here.
 def index(request):
-    return render(request, 'app/index.html')
+    return render(request, 'app/index.html', {'user':request.user})
 
 def login(request):
     username = request.POST["username"]
