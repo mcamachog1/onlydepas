@@ -119,7 +119,7 @@ def login(request):
 				- **_index.html_**
             - registration
 				- **_login.html_**
-			- _base.html_
+			- **_base.html_**
 	- onlydepas
 		- manage.py
 		- etc.
