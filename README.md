@@ -116,7 +116,7 @@ def login(request):
     else:
         return render(request, 'registration/login')
 ```
-## 3. Crear la carpeta _templates_ dentro de app y las plantillas base.html, index.html, login.html y profile.html según la siguiente estructura
+## 3. Crear la carpeta _templates_ dentro de app y las plantillas base.html, index.html y login.html según la siguiente estructura
 - PROYECTO
     - app
         - templates
@@ -179,7 +179,7 @@ LOGIN_REDIRECT_URL = 'index'
 ### 6. Levantar aplicación y probar
 `$ python manage.py runserver`
 
-### 7. Colocar la URL localhost:8000/accounts/login
+### 7. Colocar la URL localhost:8000/accounts/login/
 Ingresar con el usuario admin password: admin y debe redirigirte al index.html
 
 
