@@ -1,0 +1,10 @@
+<!-- templates/app/index.html -->
+{% extends "base.html" %}
+
+{% block content %}
+{% if user.is_authenticated %}
+    <h1>WELCOME {{ user.username }}</h1>
+{% else %}
+    <h1>WELCOME</h1>
+{% endif %}
+{% endblock %}
