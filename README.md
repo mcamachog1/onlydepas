@@ -1,7 +1,8 @@
-# Torpedo proyecto Django
-## Configuración Django
-### 0. Crear una carpeta para el proyecto y abrirla con VS Code
-### 1. Clonar la rama 'base' (colocar un punto al final)
+# Torpedo proyecto Django (base --> autenticación)
+## Configurar registro de nuevos usuarios
+### 1. Crear template register.html
+### 2. Incluir la url
+### 3. Setear idioma a español en settings.py
 `$ git clone -b base https://github.com/mcamachog1/onlydepas.git .`
 ### 2. Renombrar rama base a main para tu proyecto
 ` $ git branch -m base main`
