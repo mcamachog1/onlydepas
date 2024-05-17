@@ -30,6 +30,7 @@ SECRET_KEY = 'django-insecure-kk*$%3jwqjn50r05u3x&m5ly2y-d_vx41z%d^r9l!pb_a%2_nd
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = ['https://onlydepas-kg3s.onrender.com']
 
 
 # Application definition
