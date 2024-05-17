@@ -1,10 +1,10 @@
 # app/views.py
 
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm  
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 
 # Create your views here.
 def index(request):
@@ -20,6 +20,10 @@ def login(request):
     else:
         return render(request, 'registration/login')
 
+def logout(request):
+    logout(request)
+    return redirect(reverse_lazy('login'))
+    
 def register(request): 
     if request.method == 'POST':  
         form = UserCreationForm(request.POST)  

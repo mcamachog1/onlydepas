@@ -4,7 +4,16 @@
 {% block content %}
 {% if user.is_authenticated %}
     <h1>WELCOME {{ user.username }}</h1>
+    <ul>
+        <li><a href="{% url 'logout' %}">Logout</a></li>
+    </ul>
 {% else %}
     <h1>WELCOME</h1>
 {% endif %}
+<ul>
+    <li><a href="{% url 'login' %}">Login</a></li>
+    <li><a href="{% url 'register' %}">Regístrate</a></li>
+</ul>
 {% endblock %}
+
+

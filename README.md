@@ -2,7 +2,7 @@
 ## Configurar registro de nuevos usuarios
 ### 1. Crear template register.html
 ### 2. Incluir la url
-### 3. Setear idioma a español en settings.py
+### 3. Redirigir al index al hacer logout
 `$ git clone -b base https://github.com/mcamachog1/onlydepas.git .`
 ### 2. Renombrar rama base a main para tu proyecto
 ` $ git branch -m base main`
@@ -210,4 +210,5 @@ LOGIN_URL = 'login'
 
 # URL a la que se redirige si un usuario hace logout exitoso
 LOGOUT_URL = 'logout' 
+
 ```

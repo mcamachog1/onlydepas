@@ -135,3 +135,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # URL a la que se redirige si un usuario hace login exitoso
 LOGIN_REDIRECT_URL = 'index'
+LOGOUT_URL = 'index'
+LOGOUT_REDIRECT_URL = 'index'
