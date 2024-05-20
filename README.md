@@ -1,6 +1,7 @@
 # Torpedo proyecto Django
 ## Configuración Django
 ### 0. Crear una carpeta para el proyecto y abrirla con VS Code
+### 0.5 Forkear el repositorio para despues clonar la rama base
 ### 1. Clonar la rama 'base' (colocar un punto al final)
 `$ git clone -b base https://github.com/mcamachog1/onlydepas.git .`
 ### 2. Renombrar rama base a main para tu proyecto
@@ -53,6 +54,8 @@ DATABASES = {
     }
 }
 ```
+### 3.5 En settings.py setear LANGUAGE_CODE a español
+`LANGUAGE_CODE = 'es-ve'`
 ### 4. Aplicar las migraciones por defecto
 `$ python manage.py migrate`
 ### 5.- Crear superuser
@@ -210,3 +213,102 @@ LOGIN_URL = 'login'
 # URL a la que se redirige si un usuario hace logout exitoso
 LOGOUT_URL = 'logout' 
 ```
+### 5.- Si la aplicacion va a correr en la nube, colocar en settings.py
+```
+ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = ['https://onlydepas-kg3s.onrender.com'] #Dirección del servidor
+```
+
+
+## Configuración del registro de usuarios
+### 1.- Crear archivo app/templates/registration/register.html
+```
+<!-- templates/registration/register.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<form method="post" action=".">
+  {% csrf_token %}
+  {{ form.as_p }}
+
+  <input type="submit" />
+</form>
+{% endblock %}
+```
+
+### 2.- En app/views.py importar UserCreationForm, logout, redirect y reverse_lazy
+```
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import UserCreationForm  
+from django.shortcuts import render, redirect
+from django.urls import reverse, reverse_lazy
+```
+### 3.- En app/views.py crear la vista register y la vista logout
+```
+def register(request): 
+    if request.method == 'POST':  
+        form = UserCreationForm(request.POST)  
+        if form.is_valid():  
+            form.save() 
+            return HttpResponseRedirect(reverse('login')) 
+    else:  
+        form = UserCreationForm()  
+        context = {  
+            'form':form  
+        }  
+        return render(request, 'registration/register.html', context) 
+```
+```
+def logout(request):
+    logout(request)
+    return redirect(reverse_lazy('login'))
+```
+### 4.- En app/urls.py agregar la ruta para el register e importar la vista register
+```
+# urls.py
+from django.contrib import admin
+from django.urls import path, include
+from app.views import index, register
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/register/', register, name = 'register'),  
+    path('', index, name='index'),
+]
+```
+### 5.- En index.html agregar los links para register y logout
+```
+<!-- templates/app/index.html -->
+{% extends "base.html" %}
+
+{% block content %}
+{% if user.is_authenticated %}
+    <h1>WELCOME {{ user.username }}</h1>
+    <ul>
+        <li><a href="{% url 'logout' %}">Logout</a></li>
+    </ul>
+{% else %}
+    <h1>WELCOME</h1>
+{% endif %}
+<ul>
+    <li><a href="{% url 'login' %}">Login</a></li>
+    <li><a href="{% url 'register' %}">Regístrate</a></li>
+</ul>
+{% endblock %}
+```
+### 6. En settings.py agregar los redirects
+```
+# URL a la que se redirige si un usuario hace login exitoso
+LOGIN_REDIRECT_URL = 'index'
+
+# URL a la que se redirige si un usuario no está autenticado y trata de acceder a una vista protegida
+LOGIN_URL = 'login'
+
+LOGOUT_URL = 'logout' 
+
+# URL a la que se redirige si un usuario hace logout exitoso
+LOGOUT_REDIRECT_URL = 'index'
+```
+### 7. Levantar servicio y probar ingreso y creación de usuarios
+`$ python manage.py runserver`
