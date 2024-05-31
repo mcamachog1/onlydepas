@@ -4,7 +4,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
 from django.http import HttpResponse, HttpResponseRedirect
-
+from .models import Profile
+from django.contrib.auth import get_user_model
 
 # Create your views here.
 def index(request):
@@ -20,19 +21,31 @@ def login(request):
     else:
         return render(request, 'registration/login')
     
-def logout(request):
-    logout(request)
-    return redirect(reverse_lazy('login'))
+
 
 def register(request): 
     if request.method == 'POST':  
-        form = UserCreationForm(request.POST)  
-        if form.is_valid():  
-            form.save() 
-            return HttpResponseRedirect(reverse('login')) 
+        CustomUser = get_user_model()
+        usuario = CustomUser.objects.create_user(
+            username=request.POST["username"],
+            email=request.POST["email"],
+            password=request.POST["password"]
+        )
+        usuario.save()
+        profile = Profile()
+        profile.user = usuario
+        profile.tipo = request.POST["tipo"]
+        profile.save()
+        return HttpResponseRedirect(reverse('login')) 
+        
+        # form = UserCreationForm(request.POST)  
+        # if form.is_valid():  
+        #     form.save() 
+        #     return HttpResponseRedirect(reverse('login')) 
     else:  
-        form = UserCreationForm()  
-        context = {  
-            'form':form  
-        }  
-        return render(request, 'registration/register.html', context)  
+        # form = UserCreationForm()  
+        # context = {  
+        #     'form':form  
+        # }  
+        # return render(request, 'registration/register.html', context)  
+        return render(request, 'registration/register.html')  

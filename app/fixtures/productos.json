@@ -1,0 +1,35 @@
+[
+
+    {
+        "model": "app.producto",
+        "pk": 5,
+        "fields": {
+            "nombre": "Exprimidor de jugo",
+            "descripcion": "Para hacer solo jugo de naranja.",
+            "imagen": "https://www.freepik.es/vector-gratis/licuadora-tapa-roja_2204676.htm#fromView=search&page=1&position=2&uuid=acb8e18c-f79d-40f3-adac-125597aaf80b",
+            "categoria_id":1
+            }
+    },
+    {
+        "model": "app.producto",
+        "pk": 6,
+        "fields": {
+            "nombre": "Licuadora",
+            "descripcion": "Para hacer jugo y merengadas",
+            "imagen": "https://www.freepik.es/psd-gratis/purificador-agua-aislado-sobre-fondo-transparente_134495077.htm#fromView=search&page=1&position=12&uuid=28ba3e5b-e841-4cd3-bcae-c277d24816ca",
+            "categoria_id":1
+            }
+    },
+
+    {
+        "model": "app.producto",
+        "pk": 7,
+        "fields": {
+            "nombre": "Aspiradora",
+            "descripcion": "Para limpiar sus alfombras.",
+            "imagen": "https://www.freepik.es/psd-gratis/aspiradora-aislada-sobre-fondo-transparente_134483235.htm#fromView=search&page=1&position=0&uuid=3dbd0fb9-1a14-493b-bac6-38922cabf7d9",
+            "categoria_id":1
+            }
+    }
+
+]

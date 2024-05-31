@@ -1,0 +1,27 @@
+[
+    {
+        "model": "app.categoria",
+        "pk": 1,
+        "fields": {
+            "nombre": "Hogar", 
+            "descripcion": "Artículos relacionados con el hogar." 
+        }
+    },
+    {
+        "model": "app.categoria",
+        "pk": 2,
+        "fields": {
+            "nombre": "Oficina", 
+            "descripcion": "Artículos de oficina, papelería etc." 
+        }
+    },
+    {
+        "model": "app.categoria",
+        "pk": 3,
+        "fields": {
+            "nombre": "Accesorios", 
+            "descripcion": "Bisutería y accesorios" 
+        }
+    }
+
+]

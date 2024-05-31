@@ -3,7 +3,16 @@
 {% block content %}
 <form method="post" action=".">
   {% csrf_token %}
-  {{ form.as_p }}
+  <label for="username">Username</label>
+  <input type="text" name="username" id="username">
+  <label for="email">Email</label>
+  <input type="email" name="email" id="email">  
+  <label for="password">Password</label>
+  <input type="password" name="password" id="password">
+  <label for="usuario">Usuario</label>
+  <input type="radio" name="tipo" id="usuario" value="U">
+  <label for="administrador">Administrador</label>
+  <input type="radio" name="tipo" id="administrador" value="A">
 
   <input type="submit" />
 </form>
